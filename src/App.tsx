@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "@astryxdesign/core/reset.css";
 import "@astryxdesign/core/astryx.css";
-import "@astryxdesign/theme-neutral/theme.css";
 import { Theme } from "@astryxdesign/core";
-import { neutralTheme } from "@astryxdesign/theme-neutral/built";
+import { wervingTheme } from "./theme/wervingTheme";
 import { AppShell } from "@astryxdesign/core/AppShell";
 import { SideNav, SideNavHeading, SideNavSection, SideNavItem } from "@astryxdesign/core/SideNav";
 import { Selector } from "@astryxdesign/core/Selector";
@@ -42,7 +41,7 @@ export function App() {
   };
 
   return (
-    <Theme theme={neutralTheme}>
+    <Theme theme={wervingTheme}>
       <AppShell
         variant="elevated"
         sideNav={
