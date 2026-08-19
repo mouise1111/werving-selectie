@@ -1,0 +1,9 @@
+:root {
+  /* Shadows are quiet: borders carry most of the separation in this brand. */
+  --shadow-low: 0 1px 2px #0B3B410F;
+  --shadow-med: 0 4px 16px #0B3B4114;
+  --shadow-high: 0 12px 32px #0B3B411F;
+  --shadow-inset-hover: inset 0 0 0 1px var(--brand-teal-200);
+  --shadow-inset-selected: inset 0 0 0 2px var(--brand-teal-800);
+  --shadow-inset-error: inset 0 0 0 1px var(--color-error);
+}

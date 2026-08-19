@@ -1,0 +1,35 @@
+<!-- @dsCard group="Careers site" viewport="1180x760" -->
+<!-- @startingPoint section="Careers site" subtitle="Public vacancy site: hero, cards, apply flow" viewport="1180x760" -->
+<!DOCTYPE html>
+<html lang="nl"><head><meta charset="utf-8" /><title>Careers site — Werving & Selectie</title>
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="../../_ds_bundle.jsx"></script>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body);font-size:var(--font-size-base)}
+  a{color:var(--color-text-primary);text-decoration:none}
+  a:hover{color:var(--color-text-secondary)}
+  button{font-family:inherit}
+  .pill{height:44px;padding:0 24px;border-radius:var(--radius-full);border:0;cursor:pointer;font-size:14px;font-weight:600;transition:var(--transition-interactive)}
+  .pill-accent{background:var(--color-accent);color:var(--color-on-accent)}
+  .pill-accent:hover{background:var(--brand-lime-600)}
+  .pill-dark{background:var(--color-background-inverted);color:var(--color-on-dark);font-weight:500}
+  .pill-ghost{background:transparent;border:1px solid var(--color-border-emphasized);color:var(--color-text-primary);font-weight:500}
+  .pill-ghost:hover{background:var(--color-overlay-hover)}
+  .field{height:44px;width:100%;padding:0 16px;border:1px solid var(--color-border);border-radius:var(--radius-full);background:var(--color-background-surface);font-family:inherit;font-size:14px;color:var(--color-text-primary)}
+  .field:focus{outline:var(--focus-outline-width) var(--focus-outline-style) var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}
+  .card{background:var(--color-background-card);border:1px solid var(--color-border);border-radius:var(--radius-element)}
+</style>
+</head><body><div id="root"></div>
+<script type="text/babel" data-presets="react" data-plugins="" src="./Chrome.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="./Landing.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="./VacancyList.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="./VacancyDetail.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="./ApplyForm.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="./StatusPage.jsx"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="./app.jsx"></script>
+</body></html>

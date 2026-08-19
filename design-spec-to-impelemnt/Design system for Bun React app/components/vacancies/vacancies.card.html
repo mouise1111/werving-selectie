@@ -1,0 +1,37 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Vacatures" subtitle="Vacancy card, search bar, department tiles" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="../../_ds_bundle.jsx"></script>
+</head>
+<body style="margin:0;padding:20px;background:var(--color-background-body);font-family:var(--font-family-body)">
+<div id="root"></div>
+<script type="text/babel" data-presets="react" data-plugins="">
+const NS = Object.values(window).find(v => v && typeof v === 'object' && v.VacancyCard && v.JobSearchBar) || window;
+const {VacancyCard, JobSearchBar, CategoryTile} = NS;
+function Demo() {
+  return (
+    <div style={{display:'grid', gap:20}}>
+      <JobSearchBar keyword="" location="Gent, BE" />
+      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:16}}>
+        <VacancyCard title="Senior UI Designer" department="Design" verified
+          summary="Bouw het ontwerpsysteem van nul mee op." location="Gent, BE" contract="Voltijds" salary="€4.200" tint={1} />
+        <VacancyCard title="Data Verification" department="Operations" verified
+          summary="Analyseer sollicitatiedata voor het recruitmentteam." location="Antwerpen" contract="Remote" salary="€3.100" tint={2} emphasizeAction />
+      </div>
+      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12}}>
+        <CategoryTile label="Engineering" count={48} icon="&#9670;" selected />
+        <CategoryTile label="Human Resources" count={12} icon="&#9671;" />
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

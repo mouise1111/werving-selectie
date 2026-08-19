@@ -1,0 +1,19 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Text & icon" subtitle="Teal ink instead of black; accent is never text" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body{margin:0;padding:16px;background:var(--color-background-body);font-family:var(--font-family-body);color:var(--color-text-primary)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .sw{display:grid;gap:6px}
+  .chip{width:104px;height:56px;border-radius:var(--radius-inner);border:1px solid var(--color-border)}
+  .lbl{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-secondary);line-height:1.35}
+  .val{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-disabled)}
+  
+</style></head><body><div style="display:grid;gap:10px">
+<div style="font-size:20px;font-weight:600;color:var(--color-text-primary)">Primary — #0B3B41 <span class="val">--color-text-primary</span></div>
+<div style="font-size:15px;color:var(--color-text-secondary)">Secondary — #5B7276 <span class="val">--color-text-secondary</span></div>
+<div style="font-size:15px;color:var(--color-text-disabled)">Disabled / placeholder — #9DAFB2 <span class="val">--color-text-disabled</span></div>
+<div style="font-size:15px;color:var(--color-text-accent)">Accent text stays teal <span class="val">--color-text-accent</span></div>
+<div style="background:var(--brand-teal-800);color:var(--color-on-dark);padding:8px 12px;border-radius:var(--radius-inner);font-size:15px;width:max-content">On dark — #FFFFFF <span class="val" style="color:var(--brand-teal-200)">--color-on-dark</span></div>
+</div></body></html>

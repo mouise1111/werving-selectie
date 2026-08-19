@@ -1,0 +1,15 @@
+:root {
+  --duration-fast-min: 130ms;
+  --duration-fast: 175ms;
+  --duration-fast-max: 230ms;
+  --duration-medium-min: 310ms;
+  --duration-medium: 410ms;
+  --duration-medium-max: 550ms;
+  --duration-slow: 975ms;
+
+  --ease-standard: cubic-bezier(0.24, 1, 0.4, 1);
+  --transition-interactive: background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}

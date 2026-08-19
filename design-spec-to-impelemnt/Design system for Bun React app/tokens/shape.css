@@ -1,0 +1,15 @@
+:root {
+  --radius-none: 0px;
+  --radius-inner: 8px;
+  --radius-element: 12px;      /* job cards, tiles, inputs */
+  --radius-container: 16px;
+  --radius-page: 32px;         /* dark newsletter band, page shell */
+  --radius-full: 9999px;       /* every button, chip and search field */
+
+  --border-width: 1px;
+
+  --focus-outline-width: 2px;
+  --focus-outline-style: solid;
+  --focus-outline-color: var(--brand-teal-800);
+  --focus-outline-offset: 3px;
+}

@@ -1,0 +1,9 @@
+/* Werving & Selectie design system — global CSS entry point.
+   Layered so it can sit safely next to Astryx's own reset / astryx-base layers. */
+@import './tokens/fonts.css';
+@import './tokens/colors.css';
+@import './tokens/typography.css';
+@import './tokens/spacing.css';
+@import './tokens/shape.css';
+@import './tokens/elevation.css';
+@import './tokens/motion.css';

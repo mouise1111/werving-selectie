@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Surfaces" subtitle="White page, pale teal bands, inverted band" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body{margin:0;padding:16px;background:var(--color-background-body);font-family:var(--font-family-body);color:var(--color-text-primary)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .sw{display:grid;gap:6px}
+  .chip{width:104px;height:56px;border-radius:var(--radius-inner);border:1px solid var(--color-border)}
+  .lbl{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-secondary);line-height:1.35}
+  .val{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-disabled)}
+  
+</style></head><body><div class="row">
+<div class="sw"><div class="chip" style="background:var(--color-background-body);"></div><div class="lbl">background-body</div><div class="val">#FFFFFF</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-background-muted);"></div><div class="lbl">background-muted</div><div class="val">#E7F0F1</div></div>
+<div class="sw"><div class="chip" style="background:var(--brand-teal-50);"></div><div class="lbl">brand-teal-50</div><div class="val">#F3F8F8</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-background-inverted);display:grid;place-items:center;color:#FFFFFF;font-size:12px">Aa</div><div class="lbl">background-inverted</div><div class="val">#0B3B41</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-border);"></div><div class="lbl">border</div><div class="val">#DDE7E8</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-border-emphasized);"></div><div class="lbl">border-emphasized</div><div class="val">#C3D4D6</div></div>
+</div></body></html>

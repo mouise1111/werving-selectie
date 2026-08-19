@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Semantic" subtitle="Success, error, warning — feedback only" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body{margin:0;padding:16px;background:var(--color-background-body);font-family:var(--font-family-body);color:var(--color-text-primary)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .sw{display:grid;gap:6px}
+  .chip{width:104px;height:56px;border-radius:var(--radius-inner);border:1px solid var(--color-border)}
+  .lbl{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-secondary);line-height:1.35}
+  .val{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-disabled)}
+  
+</style></head><body><div class="row">
+<div class="sw"><div class="chip" style="background:var(--color-success);display:grid;place-items:center;color:#FFFFFF;font-size:12px">Aa</div><div class="lbl">success</div><div class="val">#0F7A4A</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-success-muted);"></div><div class="lbl">success-muted</div><div class="val">#DCF2E6</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-error);display:grid;place-items:center;color:#FFFFFF;font-size:12px">Aa</div><div class="lbl">error</div><div class="val">#A5192B</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-error-muted);"></div><div class="lbl">error-muted</div><div class="val">#FBE3E5</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-warning);display:grid;place-items:center;color:#FFFFFF;font-size:12px">Aa</div><div class="lbl">warning</div><div class="val">#8A6100</div></div>
+<div class="sw"><div class="chip" style="background:var(--color-warning-muted);"></div><div class="lbl">warning-muted</div><div class="val">#F7E6AE</div></div>
+</div></body></html>

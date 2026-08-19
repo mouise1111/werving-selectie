@@ -1,0 +1,91 @@
+:root {
+  /* ---- Brand primitives ---------------------------------------------- */
+  --brand-teal-900: #062A2F;   /* deepest ink, dark section backgrounds */
+  --brand-teal-800: #0B3B41;   /* primary ink + inverted surface */
+  --brand-teal-700: #12545B;
+  --brand-teal-400: #5B7276;   /* secondary text */
+  --brand-teal-300: #9DAFB2;   /* disabled text, placeholder */
+  --brand-teal-200: #C3D4D6;   /* emphasized border */
+  --brand-teal-150: #DDE7E8;   /* default border */
+  --brand-teal-100: #E7F0F1;   /* muted section background */
+  --brand-teal-50:  #F3F8F8;
+
+  --brand-lime-600: #B4E22F;   /* accent pressed */
+  --brand-lime-500: #C7F04A;   /* accent — pills, primary actions */
+  --brand-lime-300: #DBF69B;
+  --brand-lime-100: #EAF6D2;   /* accent muted, highlighted card */
+
+  --brand-lilac-100: #EAEAF8;  /* card tint 2 */
+  --brand-sky-100:   #E3EFF9;  /* card tint 3 */
+  --brand-butter-200:#F7E6AE;  /* badge / seal */
+
+  --brand-white: #FFFFFF;
+
+  /* ---- Astryx semantic aliases (light) -------------------------------- */
+  --color-accent: var(--brand-lime-500);
+  --color-accent-muted: var(--brand-lime-100);
+  --color-on-accent: var(--brand-teal-800);
+  --color-text-accent: var(--brand-teal-800);  /* never render lime as text */
+  --color-icon-accent: var(--brand-teal-800);
+
+  --color-background-body: var(--brand-white);
+  --color-background-surface: var(--brand-white);
+  --color-background-card: var(--brand-white);
+  --color-background-popover: var(--brand-white);
+  --color-background-muted: var(--brand-teal-100);
+  --color-background-inverted: var(--brand-teal-800);
+
+  --color-text-primary: var(--brand-teal-800);
+  --color-text-secondary: var(--brand-teal-400);
+  --color-text-disabled: var(--brand-teal-300);
+  --color-on-dark: var(--brand-white);
+  --color-on-light: var(--brand-teal-800);
+
+  --color-icon-primary: var(--brand-teal-800);
+  --color-icon-secondary: var(--brand-teal-400);
+  --color-icon-disabled: var(--brand-teal-300);
+
+  --color-border: var(--brand-teal-150);
+  --color-border-emphasized: var(--brand-teal-200);
+  --color-skeleton: var(--brand-teal-100);
+  --color-overlay-hover: #0B3B410D;
+  --color-overlay-pressed: #0B3B411A;
+  --color-shadow: #0B3B4114;
+
+  --color-success: #0F7A4A;
+  --color-success-muted: #DCF2E6;
+  --color-on-success: var(--brand-white);
+  --color-error: #A5192B;
+  --color-error-muted: #FBE3E5;
+  --color-on-error: var(--brand-white);
+  --color-warning: #8A6100;
+  --color-warning-muted: var(--brand-butter-200);
+  --color-on-warning: var(--brand-teal-800);
+
+  /* ---- Card tints (public site job cards, rotated in order) ----------- */
+  --surface-tint-1: var(--brand-lime-100);
+  --surface-tint-2: var(--brand-lilac-100);
+  --surface-tint-3: var(--brand-sky-100);
+
+  /* ---- Sollicitatiestatus (UC2–UC7) ---------------------------------- */
+  --color-status-ontvangen-bg: var(--brand-sky-100);
+  --color-status-ontvangen-fg: #17456E;
+  --color-status-behandeling-bg: var(--brand-butter-200);
+  --color-status-behandeling-fg: #6B4A00;
+  --color-status-test-uitgenodigd-bg: var(--brand-lilac-100);
+  --color-status-test-uitgenodigd-fg: #453B8A;
+  --color-status-test-voltooid-bg: #D6EEE9;
+  --color-status-test-voltooid-fg: #10554B;
+  --color-status-shortlist-bg: var(--brand-lime-100);
+  --color-status-shortlist-fg: #3D5B08;
+  --color-status-aangenomen-bg: #DCF2E6;
+  --color-status-aangenomen-fg: #0F5C39;
+  --color-status-afgewezen-bg: #FBE3E5;
+  --color-status-afgewezen-fg: #8C1524;
+  --color-status-ingetrokken-bg: #ECEFEF;
+  --color-status-ingetrokken-fg: #55686B;
+  --color-status-geweigerd-bg: #FBE6D5;
+  --color-status-geweigerd-fg: #7A3D06;
+  --color-status-wachtstand-bg: #ECEFEF;
+  --color-status-wachtstand-fg: #55686B;
+}

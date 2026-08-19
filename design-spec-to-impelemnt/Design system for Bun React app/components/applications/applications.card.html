@@ -1,0 +1,42 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Sollicitaties" subtitle="Status badges, list rows, stage timeline" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script type="text/babel" data-presets="react" data-plugins="" src="../../_ds_bundle.jsx"></script>
+</head>
+<body style="margin:0;padding:20px;background:var(--color-background-body);font-family:var(--font-family-body)">
+<div id="root"></div>
+<script type="text/babel" data-presets="react" data-plugins="">
+const NS = Object.values(window).find(v => v && typeof v === 'object' && v.StatusBadge && v.ApplicationRow) || window;
+const {StatusBadge, ApplicationRow, StageTimeline} = NS;
+const ALL = ['ontvangen','behandeling','testUitgenodigd','testVoltooid','shortlist','aangenomen','afgewezen','ingetrokken','geweigerd','wachtstand'];
+function Demo() {
+  return (
+    <div style={{display:'grid', gap:20}}>
+      <div style={{display:'flex', flexWrap:'wrap', gap:8}}>
+        {ALL.map(s => <StatusBadge key={s} status={s} />)}
+      </div>
+      <div style={{border:'1px solid var(--color-border)', borderRadius:'var(--radius-element)', overflow:'hidden'}}>
+        <ApplicationRow candidate="Ibrahim Hamza" role="Senior UI Designer" status="behandeling" appliedOn="12 mrt" testScore={78} hasMotivation />
+        <ApplicationRow candidate="Lore Vermeulen" role="Senior UI Designer" status="testVoltooid" appliedOn="10 mrt" testScore={91} selected />
+        <ApplicationRow candidate="Sam De Groot" role="Data Verification" status="ontvangen" appliedOn="9 mrt" testScore={null} />
+      </div>
+      <StageTimeline stages={[
+        {label:'Ontvangen', state:'done', meta:'12 mrt'},
+        {label:'CV-beoordeling', state:'done', meta:'Geschikt'},
+        {label:'Online test', state:'current', meta:'Uitgenodigd'},
+        {label:'Interview', state:'todo'},
+        {label:'Beslissing', state:'todo'},
+      ]} />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap');
+
+/* No font binaries were supplied with the reference material. Poppins (display /
+   headings) and Figtree (UI / body) are the nearest Google Fonts matches to the
+   geometric grotesque in the reference screens. Swap in licensed files here as
+   @font-face rules when they are available. */
+:root {
+  --font-family-heading: 'Poppins', 'Figtree', system-ui, sans-serif;
+  --font-family-body: 'Figtree', system-ui, -apple-system, sans-serif;
+  --font-family-code: ui-monospace, 'SF Mono', 'Menlo', monospace;
+}

@@ -1,0 +1,18 @@
+<!-- @dsCard group="Brand" viewport="700x140" name="Motion" subtitle="175ms micro, 410ms entrance, one easing curve" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body{margin:0;padding:16px;background:var(--color-background-body);font-family:var(--font-family-body);color:var(--color-text-primary)}
+  .row{display:flex;gap:12px;flex-wrap:wrap}
+  .sw{display:grid;gap:6px}
+  .chip{width:104px;height:56px;border-radius:var(--radius-inner);border:1px solid var(--color-border)}
+  .lbl{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-secondary);line-height:1.35}
+  .val{font-size:11px;font-family:var(--font-family-code);color:var(--color-text-disabled)}
+  .mv{animation:slide 2.2s var(--ease-standard) infinite}@keyframes slide{0%,10%{transform:translateX(0)}55%,100%{transform:translateX(180px)}}
+</style></head><body>
+<div style="display:grid;gap:12px">
+<div style="height:28px;background:var(--color-background-muted);border-radius:var(--radius-full);position:relative"><div class="mv" style="width:28px;height:28px;border-radius:99px;background:var(--color-accent)"></div></div>
+<div class="val">--duration-fast 175ms (hover, press, badge swap) · --duration-medium 410ms (panels, dialogs) · --ease-standard cubic-bezier(0.24, 1, 0.4, 1)</div>
+<div class="val">Colour and opacity transitions only. No bounce, no springs, no scale on press.</div>
+</div></body></html>

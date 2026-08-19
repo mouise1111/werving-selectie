@@ -1,0 +1,30 @@
+:root {
+  --spacing-0: 0px;
+  --spacing-0-5: 2px;
+  --spacing-1: 4px;
+  --spacing-1-5: 6px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-11: 44px;
+  --spacing-12: 48px;
+
+  /* Layout rhythm measured off the reference screens. */
+  --layout-page-max: 1180px;
+  --layout-gutter: var(--spacing-6);
+  --layout-section-y: 72px;        /* vertical padding between page bands */
+  --layout-card-gap: var(--spacing-5);
+  --layout-card-padding: var(--spacing-5);
+
+  --size-element-sm: 28px;
+  --size-element-md: 32px;
+  --size-element-lg: 36px;
+  --size-element-xl: 44px;         /* public-site pills and search field */
+  --size-search-bar: 56px;
+}
