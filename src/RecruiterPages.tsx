@@ -137,6 +137,26 @@ function MijnVacatures({ onNavigate }: { onNavigate: (p: string) => void }) {
   );
 }
 
+// ponytail: hardcoded templates per functietype (Aanname 10)
+const VACATURE_TEMPLATES: Record<string, { beschrijving: string; vereisten: string }> = {
+  "Frontend Developer": {
+    beschrijving: "Als Frontend Developer ben je verantwoordelijk voor het ontwerpen en bouwen van gebruiksvriendelijke webapplicaties. Je werkt nauw samen met designers en backend developers om een naadloze gebruikerservaring te realiseren.",
+    vereisten: "Ervaring met React of een vergelijkbaar framework. Kennis van HTML, CSS en JavaScript/TypeScript. Oog voor detail en gebruiksvriendelijkheid.",
+  },
+  "Backend Developer": {
+    beschrijving: "Als Backend Developer ontwikkel je robuuste API's en services die de kern vormen van onze applicaties. Je zorgt voor schaalbaarheid, beveiliging en performantie van onze systemen.",
+    vereisten: "Ervaring met Node.js, Python of Java. Kennis van databases (SQL en/of NoSQL). Begrip van RESTful API-design en microservices.",
+  },
+  "Marketing Specialist": {
+    beschrijving: "Als Marketing Specialist ontwikkel en voer je digitale marketingcampagnes uit. Je analyseert resultaten en optimaliseert strategieen om ons bereik en onze conversie te vergroten.",
+    vereisten: "Ervaring met digital marketing (SEO, SEA, social media). Analytisch vermogen en kennis van Google Analytics. Sterke communicatieve vaardigheden in het Nederlands.",
+  },
+  "Project Manager": {
+    beschrijving: "Als Project Manager begeleid je multidisciplinaire teams bij het opleveren van projecten binnen scope, budget en planning. Je bent het centrale aanspreekpunt voor stakeholders.",
+    vereisten: "Ervaring met projectmanagement (Agile/Scrum). Uitstekende organisatorische en communicatieve vaardigheden. Vermogen om prioriteiten te stellen en deadlines te bewaken.",
+  },
+};
+
 function VacatureDetail({ vacatureId, onNavigate }: { vacatureId: string; onNavigate: (p: string) => void }) {
   const store = useStore();
   const dispatch = useStoreAction();
@@ -155,6 +175,11 @@ function VacatureDetail({ vacatureId, onNavigate }: { vacatureId: string; onNavi
     }));
   };
 
+  const pasTemplateIn = (key: string) => {
+    const t = VACATURE_TEMPLATES[key];
+    if (t) { setEditBeschrijving(t.beschrijving); setEditVereisten(t.vereisten); }
+  };
+
   return (
     <Section padding={4} maxWidth={720}>
       <Stack gap={4}>
@@ -163,6 +188,15 @@ function VacatureDetail({ vacatureId, onNavigate }: { vacatureId: string; onNavi
           <Heading level={1}>{vacature.titel}</Heading>
           <Badge label={vacatureStatusLabel(vacature.status)} variant={vacature.status === "open" ? "success" : "neutral"} />
         </HStack>
+        <Selector
+          label="Sjabloon toepassen"
+          options={[
+            { value: "", label: "Kies een sjabloon..." },
+            ...Object.keys(VACATURE_TEMPLATES).map((k) => ({ value: k, label: k })),
+          ]}
+          value=""
+          onChange={pasTemplateIn}
+        />
         <FormLayout>
           <TextArea label="Beschrijving" value={editBeschrijving} onChange={setEditBeschrijving} />
           <TextArea label="Vereisten" value={editVereisten} onChange={setEditVereisten} />
