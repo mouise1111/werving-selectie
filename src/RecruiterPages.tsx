@@ -13,7 +13,7 @@ import { Selector } from "@astryxdesign/core/Selector";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
-import { UserPlus, Globe, ChevronLeft, Save, ClipboardList, ListChecks, Calendar, Check } from "lucide-react";
+import { UserPlus, Globe, ChevronLeft, Save, ClipboardList, ListChecks, Calendar, Check, Sparkles } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, vacatureStatusLabel,
   getGebruiker, getDepartement, gebruikerDepartementen, genId,
@@ -180,6 +180,8 @@ function SollicitatiesOverzicht() {
   const [beoordeling, setBeoordeling] = useState<Beoordeling | "">("");
   const [opmerking, setOpmerking] = useState("");
   const [testResultaat, setTestResultaat] = useState("");
+  const [aiSamenvatting, setAiSamenvatting] = useState<string | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
 
   const gebruiker = store.gebruikers.find((g) => g.id === store.huidigeGebruikerId)!;
   // Recruiter ziet sollicitaties voor zijn vacatures
@@ -197,6 +199,21 @@ function SollicitatiesOverzicht() {
     setBeoordeling(s.beoordelingRecruiter ?? "");
     setOpmerking(s.opmerkingRecruiter);
     setTestResultaat(s.testResultaat);
+    setAiSamenvatting(null);
+  };
+
+  // ponytail: mock AI — simulates a delay then shows a hardcoded summary with the candidate's name
+  const genereerSamenvatting = () => {
+    if (!detail || !detailSollicitant || !detailVacature) return;
+    setAiLoading(true);
+    setTimeout(() => {
+      setAiSamenvatting(
+        `${detailSollicitant.naam} heeft een profiel dat ${detail.cvTekst.length > 150 ? "ruim" : "beperkt"} aansluit bij de vereisten voor ${detailVacature.titel}. ` +
+        `Belangrijkste sterktes: relevante werkervaring en technische vaardigheden. ` +
+        `Aandachtspunten: mate van senioriteit en specifieke domeinkennis vergen nadere beoordeling.`
+      );
+      setAiLoading(false);
+    }, 1200);
   };
 
   const opslaanBeoordeling = () => {
@@ -329,6 +346,15 @@ function SollicitatiesOverzicht() {
               <Section variant="muted" padding={2}>
                 <Text>{detail.cvTekst}</Text>
               </Section>
+              <Button label={aiLoading ? "Bezig met genereren..." : "Genereer samenvatting"} variant="ghost" size="sm" icon={<Sparkles size={14} />} onClick={genereerSamenvatting} isDisabled={aiLoading} />
+              {aiSamenvatting && (
+                <Section variant="muted" padding={2} style={{ borderLeft: "3px solid var(--color-accent)" }}>
+                  <Stack gap={1}>
+                    <Text type="supporting" weight="semibold" color="secondary">AI-samenvatting (mockup)</Text>
+                    <Text>{aiSamenvatting}</Text>
+                  </Stack>
+                </Section>
+              )}
               {detail.motivatiebrief && (
                 <>
                   <Text type="label" weight="semibold">Motivatiebrief</Text>

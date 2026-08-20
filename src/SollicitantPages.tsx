@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Heading } from "@astryxdesign/core/Heading";
 import { Text } from "@astryxdesign/core/Text";
 import { Button } from "@astryxdesign/core/Button";
@@ -11,7 +11,7 @@ import { TextArea } from "@astryxdesign/core/TextArea";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
-import { Send, X } from "lucide-react";
+import { Send, X, Upload } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, getDepartement, genId,
   type Vacature, type Sollicitatie,
@@ -80,6 +80,16 @@ function SolliciterenForm({ vacatureId, onNavigate }: { vacatureId: string; onNa
   const vacature = vacatures.find((v) => v.id === vacatureId);
   const [cv, setCv] = useState("");
   const [brief, setBrief] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  // ponytail: fake upload — reads file as text and dumps into cv textarea
+  const handleFileUpload = () => {
+    const file = fileRef.current?.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setCv(reader.result as string);
+    reader.readAsText(file);
+  };
 
   if (!vacature) return <EmptyState title="Vacature niet gevonden" />;
 
@@ -118,6 +128,11 @@ function SolliciterenForm({ vacatureId, onNavigate }: { vacatureId: string; onNa
         </Section>
         <FormLayout>
           <TextArea label="Cv" value={cv} onChange={setCv} isRequired placeholder="Plak hier je cv of typ je gegevens..." />
+          <HStack gap={2} vAlign="center">
+            <Button label="Cv uploaden" variant="secondary" size="sm" icon={<Upload size={14} />} onClick={() => fileRef.current?.click()} />
+            <Text type="supporting" color="secondary">pdf, docx of txt</Text>
+            <input ref={fileRef} type="file" accept=".pdf,.docx,.txt,.doc" onChange={handleFileUpload} style={{ display: "none" }} />
+          </HStack>
           {vacature.motivatiebriefVerplicht ? (
             <TextArea label="Motivatiebrief" value={brief} onChange={setBrief} isRequired placeholder="Schrijf hier je motivatiebrief..." />
           ) : (
