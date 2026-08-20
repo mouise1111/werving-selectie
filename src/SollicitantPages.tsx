@@ -8,6 +8,7 @@ import { Section } from "@astryxdesign/core/Section";
 import { Stack } from "@astryxdesign/core/Stack";
 import { HStack } from "@astryxdesign/core/HStack";
 import { TextArea } from "@astryxdesign/core/TextArea";
+import { TextInput } from "@astryxdesign/core/TextInput";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
@@ -30,12 +31,21 @@ export function SollicitantPages({ page, onNavigate }: Props) {
 
 function VacaturesOverzicht({ onNavigate }: { onNavigate: (p: string) => void }) {
   const { vacatures } = useStore();
-  const openVacatures = vacatures.filter((v) => v.status === "open");
+  const [zoek, setZoek] = useState("");
+  const openVacatures = vacatures.filter((v) => {
+    if (v.status !== "open") return false;
+    if (zoek) {
+      const q = zoek.toLowerCase();
+      if (!v.titel.toLowerCase().includes(q) && !(getDepartement(v.departementId)?.naam?.toLowerCase().includes(q))) return false;
+    }
+    return true;
+  });
 
   return (
     <Section padding={4}>
       <Stack gap={4}>
         <Heading level={1}>Openstaande vacatures</Heading>
+        <TextInput label="Zoeken" isLabelHidden value={zoek} onChange={setZoek} placeholder="Zoek op functie of departement..." size="sm" />
         {openVacatures.length === 0 ? (
           <EmptyState title="Geen vacatures" description="Er zijn momenteel geen openstaande vacatures." />
         ) : (

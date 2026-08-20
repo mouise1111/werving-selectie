@@ -17,8 +17,8 @@ import { EmptyState } from "@astryxdesign/core/EmptyState";
 import { PlusCircle, Send, X, Check, UserCheck, Users } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, vacatureStatusLabel,
-  getGebruiker, getDepartement, genId,
-  type Vacature, type Sollicitatie,
+  getGebruiker, getDepartement, genId, SOLLICITATIE_STATUS_OPTIONS,
+  type Vacature, type Sollicitatie, type SollicitatieStatus,
 } from "./store";
 
 interface Props {
@@ -129,13 +129,25 @@ function KandidatenOverzicht() {
   const [assignDialogSolId, setAssignDialogSolId] = useState<string | null>(null);
   const [selectedInterviewers, setSelectedInterviewers] = useState<string[]>([]);
   const [aannameDialogSolId, setAannameDialogSolId] = useState<string | null>(null);
+  const [zoek, setZoek] = useState("");
+  const [statusFilter, setStatusFilter] = useState<SollicitatieStatus | "">("");
 
   const mijnVacatureIds = store.vacatures
     .filter((v) => v.managerId === store.huidigeGebruikerId)
     .map((v) => v.id);
-  const kandidaten = store.sollicitaties.filter(
+  const alleKandidaten = store.sollicitaties.filter(
     (s) => mijnVacatureIds.includes(s.vacatureId) && s.status !== "ingetrokken"
   );
+  const kandidaten = alleKandidaten.filter((s) => {
+    if (statusFilter && s.status !== statusFilter) return false;
+    if (zoek) {
+      const q = zoek.toLowerCase();
+      const naam = getGebruiker(s.sollicitantId)?.naam?.toLowerCase() ?? "";
+      const vac = store.vacatures.find((v) => v.id === s.vacatureId)?.titel?.toLowerCase() ?? "";
+      if (!naam.includes(q) && !vac.includes(q)) return false;
+    }
+    return true;
+  });
 
   const detail = kandidaten.find((s) => s.id === detailId);
   const detailVacature = detail ? store.vacatures.find((v) => v.id === detail.vacatureId) : null;
@@ -203,6 +215,10 @@ function KandidatenOverzicht() {
     <Section padding={4}>
       <Stack gap={4}>
         <Heading level={1}>Kandidaten</Heading>
+        <HStack gap={2} wrap="wrap">
+          <TextInput label="Zoeken" isLabelHidden value={zoek} onChange={setZoek} placeholder="Zoek op naam of vacature..." size="sm" />
+          <Selector label="Status" isLabelHidden options={SOLLICITATIE_STATUS_OPTIONS} value={statusFilter} onChange={(v) => setStatusFilter(v as SollicitatieStatus | "")} />
+        </HStack>
         {kandidaten.length === 0 ? (
           <EmptyState title="Geen kandidaten" description="Er zijn geen sollicitaties voor jouw vacatures." />
         ) : (

@@ -16,8 +16,8 @@ import { EmptyState } from "@astryxdesign/core/EmptyState";
 import { UserPlus, Globe, ChevronLeft, Save, ClipboardList, ListChecks, Calendar, Check, Sparkles } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, vacatureStatusLabel,
-  getGebruiker, getDepartement, gebruikerDepartementen, genId,
-  type Vacature, type Sollicitatie, type Beoordeling, type Interview,
+  getGebruiker, getDepartement, gebruikerDepartementen, genId, SOLLICITATIE_STATUS_OPTIONS,
+  type Vacature, type Sollicitatie, type Beoordeling, type Interview, type SollicitatieStatus,
 } from "./store";
 
 interface Props {
@@ -216,13 +216,24 @@ function SollicitatiesOverzicht() {
   const [testResultaat, setTestResultaat] = useState("");
   const [aiSamenvatting, setAiSamenvatting] = useState<string | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
+  const [zoek, setZoek] = useState("");
+  const [statusFilter, setStatusFilter] = useState<SollicitatieStatus | "">("");
 
   const gebruiker = store.gebruikers.find((g) => g.id === store.huidigeGebruikerId)!;
-  // Recruiter ziet sollicitaties voor zijn vacatures
   const mijnVacatureIds = store.vacatures
     .filter((v) => v.recruiterId === store.huidigeGebruikerId)
     .map((v) => v.id);
-  const sollicitaties = store.sollicitaties.filter((s) => mijnVacatureIds.includes(s.vacatureId));
+  const alleSollicitaties = store.sollicitaties.filter((s) => mijnVacatureIds.includes(s.vacatureId));
+  const sollicitaties = alleSollicitaties.filter((s) => {
+    if (statusFilter && s.status !== statusFilter) return false;
+    if (zoek) {
+      const q = zoek.toLowerCase();
+      const naam = getGebruiker(s.sollicitantId)?.naam?.toLowerCase() ?? "";
+      const vac = store.vacatures.find((v) => v.id === s.vacatureId)?.titel?.toLowerCase() ?? "";
+      if (!naam.includes(q) && !vac.includes(q)) return false;
+    }
+    return true;
+  });
 
   const detail = sollicitaties.find((s) => s.id === detailId);
   const detailVacature = detail ? store.vacatures.find((v) => v.id === detail.vacatureId) : null;
@@ -328,6 +339,10 @@ function SollicitatiesOverzicht() {
     <Section padding={4}>
       <Stack gap={4}>
         <Heading level={1}>Sollicitaties</Heading>
+        <HStack gap={2} wrap="wrap">
+          <TextInput label="Zoeken" isLabelHidden value={zoek} onChange={setZoek} placeholder="Zoek op naam of vacature..." size="sm" />
+          <Selector label="Status" isLabelHidden options={SOLLICITATIE_STATUS_OPTIONS} value={statusFilter} onChange={(v) => setStatusFilter(v as SollicitatieStatus | "")} />
+        </HStack>
         {sollicitaties.length === 0 ? (
           <EmptyState title="Geen sollicitaties" description="Er zijn nog geen sollicitaties voor jouw vacatures." />
         ) : (
