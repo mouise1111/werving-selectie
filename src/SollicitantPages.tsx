@@ -11,6 +11,7 @@ import { TextArea } from "@astryxdesign/core/TextArea";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
+import { Send, X } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, getDepartement, genId,
   type Vacature, type Sollicitatie,
@@ -61,7 +62,7 @@ function VacaturesOverzicht({ onNavigate }: { onNavigate: (p: string) => void })
                 header: "",
                 width: proportional(1),
                 renderCell: (row: Vacature) => (
-                  <Button label="Solliciteren" size="sm" variant="primary" onClick={() => onNavigate(`solliciteren:${row.id}`)} />
+                  <Button label="Solliciteren" size="sm" variant="primary" icon={<Send size={14} />} onClick={() => onNavigate(`solliciteren:${row.id}`)} />
                 ),
               },
             ]}
@@ -124,8 +125,8 @@ function SolliciterenForm({ vacatureId, onNavigate }: { vacatureId: string; onNa
           )}
         </FormLayout>
         <HStack gap={2}>
-          <Button label="Indienen" variant="primary" onClick={handleSubmit} />
-          <Button label="Annuleren" variant="ghost" onClick={() => onNavigate("dashboard")} />
+          <Button label="Indienen" variant="primary" icon={<Send size={16} />} onClick={handleSubmit} />
+          <Button label="Annuleren" variant="ghost" icon={<X size={16} />} onClick={() => onNavigate("dashboard")} />
         </HStack>
       </Stack>
     </Section>
@@ -214,7 +215,7 @@ function MijnSollicitaties() {
                 </>
               )}
               {kanIntrekken(detail) && (
-                <Button label="Sollicitatie intrekken" variant="destructive" onClick={() => intrekken(detail.id)} />
+                <Button label="Sollicitatie intrekken" variant="destructive" icon={<X size={16} />} onClick={() => intrekken(detail.id)} />
               )}
             </Stack>
           </Section>

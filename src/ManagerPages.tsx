@@ -14,6 +14,7 @@ import { Switch } from "@astryxdesign/core/Switch";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
+import { PlusCircle, Send, X, Check, UserCheck, Users } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, vacatureStatusLabel,
   getGebruiker, getDepartement, genId,
@@ -40,7 +41,7 @@ function MijnVacatures({ onNavigate }: { onNavigate: (p: string) => void }) {
       <Stack gap={4}>
         <HStack gap={2} vAlign="center" hAlign="between">
           <Heading level={1}>Mijn vacatures</Heading>
-          <Button label="Nieuwe vacature" variant="primary" onClick={() => onNavigate("nieuwe-vacature")} />
+          <Button label="Nieuwe vacature" variant="primary" icon={<PlusCircle size={16} />} onClick={() => onNavigate("nieuwe-vacature")} />
         </HStack>
         {mijnVacatures.length === 0 ? (
           <EmptyState title="Geen vacatures" description="Je hebt nog geen vacatures aangevraagd." />
@@ -113,8 +114,8 @@ function NieuweVacature({ onNavigate }: { onNavigate: (p: string) => void }) {
           <Switch label="Motivatiebrief verplicht" value={motivatiebriefVerplicht} onChange={setMotivatiebrief} />
         </FormLayout>
         <HStack gap={2}>
-          <Button label="Aanvraag indienen" variant="primary" onClick={handleSubmit} />
-          <Button label="Annuleren" variant="ghost" onClick={() => onNavigate("dashboard")} />
+          <Button label="Aanvraag indienen" variant="primary" icon={<Send size={16} />} onClick={handleSubmit} />
+          <Button label="Annuleren" variant="ghost" icon={<X size={16} />} onClick={() => onNavigate("dashboard")} />
         </HStack>
       </Stack>
     </Section>
@@ -236,7 +237,7 @@ function KandidatenOverzicht() {
                   <HStack gap={1} wrap="wrap">
                     <Button label="Details" size="sm" variant="ghost" onClick={() => setDetailId(row.id)} />
                     {(row.status === "interview_gepland" || row.status === "interview_afgerond") && (
-                      <Button label="Interviewers" size="sm" variant="secondary" onClick={() => { setAssignDialogSolId(row.id); setSelectedInterviewers([]); }} />
+                      <Button label="Interviewers" size="sm" variant="secondary" icon={<Users size={14} />} onClick={() => { setAssignDialogSolId(row.id); setSelectedInterviewers([]); }} />
                     )}
                   </HStack>
                 ),
@@ -298,13 +299,13 @@ function KandidatenOverzicht() {
               )}
               {(detail.status === "interview_afgerond" || detail.status === "interview_gepland") && (
                 <HStack gap={2}>
-                  <Button label="Aannemen" variant="primary" onClick={() => setAannameDialogSolId(detail.id)} />
-                  <Button label="Afwijzen" variant="destructive" onClick={() => afwijzen(detail.id)} />
+                  <Button label="Aannemen" variant="primary" icon={<Check size={16} />} onClick={() => setAannameDialogSolId(detail.id)} />
+                  <Button label="Afwijzen" variant="destructive" icon={<X size={16} />} onClick={() => afwijzen(detail.id)} />
                 </HStack>
               )}
               {detail.status === "shortlist" && (
                 <HStack gap={2}>
-                  <Button label="Goedkeuren voor interview" variant="primary" onClick={() => {
+                  <Button label="Goedkeuren voor interview" variant="primary" icon={<UserCheck size={16} />} onClick={() => {
                     dispatch((s) => ({
                       ...s,
                       sollicitaties: s.sollicitaties.map((sol) =>
@@ -313,7 +314,7 @@ function KandidatenOverzicht() {
                     }));
                     setDetailId(null);
                   }} />
-                  <Button label="Afwijzen" variant="destructive" onClick={() => afwijzen(detail.id)} />
+                  <Button label="Afwijzen" variant="destructive" icon={<X size={16} />} onClick={() => afwijzen(detail.id)} />
                 </HStack>
               )}
             </Stack>
@@ -340,7 +341,7 @@ function KandidatenOverzicht() {
                   />
                 </HStack>
               ))}
-              <Button label="Interviews toewijzen" variant="primary" onClick={wijsInterviewersToe} />
+              <Button label="Interviews toewijzen" variant="primary" icon={<UserCheck size={16} />} onClick={wijsInterviewersToe} />
             </Stack>
           </Section>
         </Dialog>
@@ -352,9 +353,9 @@ function KandidatenOverzicht() {
             <Stack gap={3}>
               <Text>Wil je de vacature sluiten na deze aanname, of openhouden voor bijkomende aanwervingen?</Text>
               <HStack gap={2} wrap="wrap">
-                <Button label="Aannemen en vacature sluiten" variant="primary" onClick={() => aannemen(aannameDialogSolId, true)} />
-                <Button label="Aannemen, vacature openhouden" variant="secondary" onClick={() => aannemen(aannameDialogSolId, false)} />
-                <Button label="Annuleren" variant="ghost" onClick={() => setAannameDialogSolId(null)} />
+                <Button label="Aannemen en vacature sluiten" variant="primary" icon={<Check size={16} />} onClick={() => aannemen(aannameDialogSolId, true)} />
+                <Button label="Aannemen, vacature openhouden" variant="secondary" icon={<Check size={16} />} onClick={() => aannemen(aannameDialogSolId, false)} />
+                <Button label="Annuleren" variant="ghost" icon={<X size={16} />} onClick={() => setAannameDialogSolId(null)} />
               </HStack>
             </Stack>
           </Section>

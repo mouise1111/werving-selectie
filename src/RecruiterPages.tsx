@@ -13,6 +13,7 @@ import { Selector } from "@astryxdesign/core/Selector";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
+import { UserPlus, Globe, ChevronLeft, Save, ClipboardList, ListChecks, Calendar, Check } from "lucide-react";
 import {
   useStore, useStoreAction, statusLabel, statusVariant, vacatureStatusLabel,
   getGebruiker, getDepartement, gebruikerDepartementen, genId,
@@ -86,7 +87,7 @@ function MijnVacatures({ onNavigate }: { onNavigate: (p: string) => void }) {
                 {
                   key: "acties", header: "", width: proportional(1),
                   renderCell: (row: Vacature) => (
-                    <Button label="Toewijzen aan mij" size="sm" variant="primary" onClick={() => claimVacature(row.id)} />
+                    <Button label="Toewijzen aan mij" size="sm" variant="primary" icon={<UserPlus size={14} />} onClick={() => claimVacature(row.id)} />
                   ),
                 },
               ]}
@@ -123,7 +124,7 @@ function MijnVacatures({ onNavigate }: { onNavigate: (p: string) => void }) {
                   <HStack gap={1}>
                     <Button label="Bekijken" size="sm" variant="ghost" onClick={() => onNavigate(`vacature:${row.id}`)} />
                     {row.status === "concept" && (
-                      <Button label="Publiceren" size="sm" variant="primary" onClick={() => publiceer(row.id)} />
+                      <Button label="Publiceren" size="sm" variant="primary" icon={<Globe size={14} />} onClick={() => publiceer(row.id)} />
                     )}
                   </HStack>
                 ),
@@ -158,7 +159,7 @@ function VacatureDetail({ vacatureId, onNavigate }: { vacatureId: string; onNavi
     <Section padding={4} maxWidth={720}>
       <Stack gap={4}>
         <HStack gap={2} vAlign="center">
-          <Button label="Terug" variant="ghost" size="sm" onClick={() => onNavigate("dashboard")} />
+          <Button label="Terug" variant="ghost" size="sm" icon={<ChevronLeft size={16} />} onClick={() => onNavigate("dashboard")} />
           <Heading level={1}>{vacature.titel}</Heading>
           <Badge label={vacatureStatusLabel(vacature.status)} variant={vacature.status === "open" ? "success" : "neutral"} />
         </HStack>
@@ -166,7 +167,7 @@ function VacatureDetail({ vacatureId, onNavigate }: { vacatureId: string; onNavi
           <TextArea label="Beschrijving" value={editBeschrijving} onChange={setEditBeschrijving} />
           <TextArea label="Vereisten" value={editVereisten} onChange={setEditVereisten} />
         </FormLayout>
-        <Button label="Wijzigingen opslaan" variant="primary" onClick={opslaan} />
+        <Button label="Wijzigingen opslaan" variant="primary" icon={<Save size={16} />} onClick={opslaan} />
       </Stack>
     </Section>
   );
@@ -354,18 +355,18 @@ function SollicitatiesOverzicht() {
                 )}
               </FormLayout>
               <HStack gap={2} wrap="wrap">
-                <Button label="Beoordeling opslaan" variant="primary" onClick={opslaanBeoordeling} />
+                <Button label="Beoordeling opslaan" variant="primary" icon={<Save size={16} />} onClick={opslaanBeoordeling} />
                 {(detail.status === "in_behandeling" || detail.status === "ontvangen") && beoordeling === "twijfelgeval" && (
-                  <Button label="Uitnodigen voor test" variant="secondary" onClick={uitnodigenVoorTest} />
+                  <Button label="Uitnodigen voor test" variant="secondary" icon={<ClipboardList size={16} />} onClick={uitnodigenVoorTest} />
                 )}
                 {detail.status === "uitgenodigd_voor_test" && testResultaat && (
-                  <Button label="Test voltooid markeren" variant="secondary" onClick={testVoltooid} />
+                  <Button label="Test voltooid markeren" variant="secondary" icon={<Check size={16} />} onClick={testVoltooid} />
                 )}
                 {(detail.status === "in_behandeling" || detail.status === "test_voltooid") && beoordeling === "geschikt" && (
-                  <Button label="Op shortlist plaatsen" variant="secondary" onClick={plaatsOpShortlist} />
+                  <Button label="Op shortlist plaatsen" variant="secondary" icon={<ListChecks size={16} />} onClick={plaatsOpShortlist} />
                 )}
                 {detail.status === "shortlist" && (
-                  <Button label="Interview inplannen" variant="secondary" onClick={planInterview} />
+                  <Button label="Interview inplannen" variant="secondary" icon={<Calendar size={16} />} onClick={planInterview} />
                 )}
               </HStack>
             </Stack>
@@ -553,7 +554,7 @@ function InterviewsOverzicht() {
                 />
               </FormLayout>
               {!detail.afgerond && (
-                <Button label="Beoordeling opslaan en afronden" variant="primary" onClick={opslaanInterviewBeoordeling} />
+                <Button label="Beoordeling opslaan en afronden" variant="primary" icon={<Save size={16} />} onClick={opslaanInterviewBeoordeling} />
               )}
             </Stack>
           </Section>
@@ -574,7 +575,7 @@ function InterviewsOverzicht() {
                 />
                 <TextInput label="Datum" value={planDatum} onChange={setPlanDatum} placeholder="YYYY-MM-DD" />
               </FormLayout>
-              <Button label="Interview inplannen" variant="primary" onClick={planVervolgInterview} />
+              <Button label="Interview inplannen" variant="primary" icon={<Calendar size={16} />} onClick={planVervolgInterview} />
             </Stack>
           </Section>
         </Dialog>

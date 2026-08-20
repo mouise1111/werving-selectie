@@ -11,6 +11,7 @@ import { TextArea } from "@astryxdesign/core/TextArea";
 import { Dialog, DialogHeader } from "@astryxdesign/core/Dialog";
 import { FormLayout } from "@astryxdesign/core/FormLayout";
 import { EmptyState } from "@astryxdesign/core/EmptyState";
+import { Save } from "lucide-react";
 import {
   useStore, useStoreAction, getGebruiker,
   type Interview,
@@ -159,7 +160,7 @@ function MijnInterviews() {
               </FormLayout>
 
               {!detail.afgerond && (
-                <Button label="Beoordeling opslaan en afronden" variant="primary" onClick={opslaanBeoordeling} />
+                <Button label="Beoordeling opslaan en afronden" variant="primary" icon={<Save size={16} />} onClick={opslaanBeoordeling} />
               )}
               {detail.afgerond && (
                 <Section variant="muted" padding={2}>

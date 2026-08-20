@@ -8,6 +8,7 @@ import { SideNav, SideNavHeading, SideNavSection, SideNavItem } from "@astryxdes
 import { Selector } from "@astryxdesign/core/Selector";
 import { Button } from "@astryxdesign/core/Button";
 import { HStack } from "@astryxdesign/core/HStack";
+import { Briefcase, Users, PlusCircle, FileText, MessageSquare, RotateCcw } from "lucide-react";
 import { useStore, useStoreAction, resetStore, getDepartement, gebruikerDepartementen, type Rol } from "./store";
 import { SollicitantPages } from "./SollicitantPages";
 import { RecruiterPages } from "./RecruiterPages";
@@ -58,7 +59,7 @@ export function App() {
             }
             footer={
               <HStack gap={2} padding={2}>
-                <Button label="Reset data" variant="ghost" size="sm" onClick={resetStore} />
+                <Button label="Reset data" variant="ghost" size="sm" icon={<RotateCcw size={14} />} onClick={resetStore} />
               </HStack>
             }
           >
@@ -90,30 +91,30 @@ function NavItems({ rol, page, onNavigate }: { rol: Rol; page: Page; onNavigate:
     case "sollicitant":
       return (
         <>
-          <SideNavItem label="Vacatures" isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
-          <SideNavItem label="Mijn sollicitaties" isSelected={page === "mijn-sollicitaties"} onClick={() => onNavigate("mijn-sollicitaties")} />
+          <SideNavItem label="Vacatures" icon={<Briefcase size={18} />} isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
+          <SideNavItem label="Mijn sollicitaties" icon={<FileText size={18} />} isSelected={page === "mijn-sollicitaties"} onClick={() => onNavigate("mijn-sollicitaties")} />
         </>
       );
     case "recruiter":
       return (
         <>
-          <SideNavItem label="Mijn vacatures" isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
-          <SideNavItem label="Sollicitaties" isSelected={page === "sollicitaties"} onClick={() => onNavigate("sollicitaties")} />
-          <SideNavItem label="Interviews" isSelected={page === "interviews"} onClick={() => onNavigate("interviews")} />
+          <SideNavItem label="Mijn vacatures" icon={<Briefcase size={18} />} isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
+          <SideNavItem label="Sollicitaties" icon={<Users size={18} />} isSelected={page === "sollicitaties"} onClick={() => onNavigate("sollicitaties")} />
+          <SideNavItem label="Interviews" icon={<MessageSquare size={18} />} isSelected={page === "interviews"} onClick={() => onNavigate("interviews")} />
         </>
       );
     case "manager":
       return (
         <>
-          <SideNavItem label="Mijn vacatures" isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
-          <SideNavItem label="Nieuwe vacature" isSelected={page === "nieuwe-vacature"} onClick={() => onNavigate("nieuwe-vacature")} />
-          <SideNavItem label="Kandidaten" isSelected={page === "kandidaten"} onClick={() => onNavigate("kandidaten")} />
+          <SideNavItem label="Mijn vacatures" icon={<Briefcase size={18} />} isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
+          <SideNavItem label="Nieuwe vacature" icon={<PlusCircle size={18} />} isSelected={page === "nieuwe-vacature"} onClick={() => onNavigate("nieuwe-vacature")} />
+          <SideNavItem label="Kandidaten" icon={<Users size={18} />} isSelected={page === "kandidaten"} onClick={() => onNavigate("kandidaten")} />
         </>
       );
     case "interviewer":
       return (
         <>
-          <SideNavItem label="Mijn interviews" isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
+          <SideNavItem label="Mijn interviews" icon={<MessageSquare size={18} />} isSelected={page === "dashboard"} onClick={() => onNavigate("dashboard")} />
         </>
       );
   }
