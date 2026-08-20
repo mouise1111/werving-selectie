@@ -8,7 +8,7 @@ import { SideNav, SideNavHeading, SideNavSection, SideNavItem } from "@astryxdes
 import { Selector } from "@astryxdesign/core/Selector";
 import { Button } from "@astryxdesign/core/Button";
 import { HStack } from "@astryxdesign/core/HStack";
-import { Briefcase, Users, PlusCircle, FileText, MessageSquare, RotateCcw } from "lucide-react";
+import { Briefcase, Users, PlusCircle, FileText, MessageSquare, RotateCcw, Sun, Moon } from "lucide-react";
 import { useStore, useStoreAction, resetStore, getDepartement, gebruikerDepartementen, type Rol } from "./store";
 import { SollicitantPages } from "./SollicitantPages";
 import { RecruiterPages } from "./RecruiterPages";
@@ -28,6 +28,7 @@ export function App() {
   const store = useStore();
   const dispatch = useStoreAction();
   const [page, setPage] = useState<Page>("dashboard");
+  const [darkMode, setDarkMode] = useState(false);
 
   const huidigeGebruiker = store.gebruikers.find((g) => g.id === store.huidigeGebruikerId)!;
   const rol = huidigeGebruiker.rol;
@@ -42,7 +43,7 @@ export function App() {
   };
 
   return (
-    <Theme theme={wervingTheme}>
+    <Theme theme={wervingTheme} mode={darkMode ? "dark" : "light"}>
       <AppShell
         variant="elevated"
         sideNav={
@@ -58,8 +59,9 @@ export function App() {
               />
             }
             footer={
-              <HStack gap={2} padding={2}>
+              <HStack gap={2} padding={2} hAlign="between">
                 <Button label="Reset data" variant="ghost" size="sm" icon={<RotateCcw size={14} />} onClick={resetStore} />
+                <Button label={darkMode ? "Licht" : "Donker"} variant="ghost" size="sm" icon={darkMode ? <Sun size={14} /> : <Moon size={14} />} onClick={() => setDarkMode(!darkMode)} />
               </HStack>
             }
           >
